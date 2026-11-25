@@ -1,0 +1,13 @@
+numpy
+pandas
+scikit-learn>=1.5
+xgboost>=2.0
+shap
+lime
+torch
+transformers
+flask
+groq
+openai
+joblib
+reportlab>=4.0

@@ -1,0 +1,59 @@
+CLINICAL SUMMARY: 58‑year‑old patient, weight 82 kg, height 168 cm, BMI 29.1 kg/m² (WHO overweight, Asian obese). Blood pressure 152/94 mmHg (Stage 2). Random capillary glucose 246 mg/dL. HbA1c 8.2 % (last week).  
+
+DIABETES ASSESSMENT: Meets ADA diagnostic criterion – confirm with repeat test. Hybrid model score 0.828 (threshold 0.38); 5 of 6 structured models flag positive (Logistic Regression 0.88, Decision Tree 0.964, Random Forest 0.777, XGBoost 0.841, SVM 0.125 – negative). Text models: TF‑IDF + SVM 0.057 (negative), BioBERT + classifier 0.984 (positive). Random glucose ≥200 mg/dL with classic symptoms (polydipsia, polyuria) satisfies ADA diagnostic rule; HbA1c ≥6.5 % also meets criterion. Diagnosis should be confirmed with repeat fasting plasma glucose or repeat HbA1c; do not declare a new diagnosis solely on model output.  
+
+HYPERTENSION ASSESSMENT: Known hypertension for 6 years, on Amlodipine 5 mg OD. Current BP 152/94 mmHg → ACC/AHA Stage 2 hypertension. Model score 0.986 (threshold 0.48) – positive.  
+
+BMI AND METABOLIC RISK: WHO category – Overweight (BMI 29.1). Asian cut‑offs – Obese (≥27.5). Elevated metabolic risk.  
+
+KEY CONTRIBUTING FACTORS: Explainability (SHAP) shows the largest positive contribution from elevated GRBS (value 246 mg/dL, contribution +1.648), followed by documented hypertension history (+1.07). BMI adds a modest positive (+0.10). Diastolic BP contributes (+0.07). Negative contributions arise from the BioBERT text context (‑1.34) and a slight protective effect from family history of diabetes (‑0.24). LIME rules similarly highlight GRBS > 144.85, hypertension history, presence of cardiovascular disease, and BMI > 24.44 as drivers of the high diabetes risk score.  
+
+MEDICATION REVIEW:  
+- Amlodipine 5 mg OD (morning) – current antihypertensive, appropriate to continue.  
+
+Draft prescription rationale:  
+- Telmisartan 40 mg OD (morning) – added ARB to achieve tighter BP control and provide additional cardiovascular protection in a patient with prior MI and hypertension.  
+- Metformin 500 mg BID (after food) – first‑line oral agent for type 2 diabetes; low starting dose to minimise gastrointestinal side effects, to be uptitrated as tolerated.  
+- Empagliflozin 10 mg OD (morning) – SGLT2 inhibitor indicated for diabetes with established atherosclerotic cardiovascular disease (history of MI), offering CV and renal benefit.  
+- Aspirin 75 mg OD (after lunch) – low‑dose antiplatelet for secondary prevention after myocardial infarction.  
+- Atorvastatin 20 mg HS – statin therapy for secondary prevention of cardiovascular disease; bedtime dosing aligns with lipid synthesis rhythm.  
+
+No safety warnings were generated and no items were removed by the safety check.  
+
+RECOMMENDED INVESTIGATIONS:  
+- Repeat fasting plasma glucose or repeat HbA1c to confirm diabetes diagnosis.  
+- Full lipid profile (total cholesterol, LDL‑C, HDL‑C, triglycerides).  
+- Serum creatinine, eGFR, and electrolytes (especially potassium) due to ARB initiation.  
+- Urine albumin‑to‑creatinine ratio for renal assessment.  
+- 12‑lead ECG to evaluate cardiac status.  
+- Dilated retinal fundus examination.  
+- Comprehensive foot examination (sensory testing, skin inspection).  
+- Baseline CBC and vitamin B12 (monitoring for metformin‑related effects).  
+
+LIFESTYLE ADVICE AND FOLLOW‑UP: Emphasise dietary carbohydrate control, caloric restriction to achieve weight loss, sodium restriction (<1500 mg/day), regular aerobic activity ≥150 min/week, smoking cessation if applicable, and foot care (daily inspection, proper footwear). Patient advised “diet control.” Follow‑up appointment scheduled in 2 weeks; earlier review if symptoms of hypoglycaemia, worsening polyuria/polydipsia, or edema develop.  
+
+DATA QUALITY AND LIMITATIONS: Sex was not recorded, limiting sex‑specific risk adjustment. Renal function labs are absent, which is needed before finalising metformin and SGLT2‑inhibitor dosing. Only a single random glucose measurement is available; repeat testing is required. One text‑based model (TF‑IDF + SVM) gave a low probability, reflecting variability across algorithms. SHAP and LIME explainability point to glucose and hypertension as dominant factors, but model outputs should be interpreted in the clinical context and not replace confirmatory testing.  
+
+AI-assisted decision support - to be verified by the treating clinician.
+
+PRESCRIPTION (DRAFT - not valid until reviewed and signed by the treating clinician):
+Rx
+  1. Amlodipine - continue as before  [continue; hypertension]
+  2. Tab Telmisartan 40 mg - 1-0-0 (once daily (morning)), morning - indefinite  [new; hypertension]
+  3. Tab Metformin 500 mg - 1-0-1 (twice daily), after food - indefinite  [new; diabetes]
+  4. Tab Empagliflozin 10 mg - 1-0-0 (once daily (morning)), morning - indefinite  [new; diabetes with cardiovascular disease]
+  5. Tab Aspirin 75 mg - 1-0-0 (once daily (morning)), after lunch - indefinite  [new; secondary prevention of cardiovascular disease]
+  6. Tab Atorvastatin 20 mg - 0-0-1 (at bedtime), after dinner - indefinite  [new; lipid lowering for cardiovascular disease]
+Advice:
+  - Adopt a balanced diet low in simple sugars and saturated fats
+  - Engage in at least 150 minutes of moderate‑intensity aerobic exercise per week
+  - Limit sodium intake to <2 g per day
+  - Monitor blood glucose daily and keep a log
+  - Perform daily foot inspection and maintain good foot hygiene
+Investigations:
+  - Repeat fasting plasma glucose
+  - HbA1c in 3 months
+  - Lipid profile
+  - Serum creatinine/eGFR and electrolytes
+  - Urine albumin‑creatinine ratio
+Review after: 2 weeks

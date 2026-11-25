@@ -1,0 +1,31 @@
+  embedding notes with BioBERT (CPU, one-off)...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 15693.35it/s]
+[1mBertModel LOAD REPORT[0m from: dmis-lab/biobert-base-cased-v1.1
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.decoder.weight             | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.decoder.bias               | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+  done in 321s
+
+=== NLP / Hybrid (DiaBD + synthetic notes) ===
+  TF-IDF + SVM (text only)                                   AUC 0.729  PR-AUC 0.174  F1 0.319
+  BioBERT embeddings + Logistic Regression (text only)       AUC 0.709  PR-AUC 0.158  F1 0.230
+  Hybrid XGBoost (structured + NLP-extracted + BioBERT)      AUC 0.823  PR-AUC 0.340  F1 0.392
+  Ablation: XGBoost measurements only                        AUC 0.831  PR-AUC 0.262  F1 0.348
+
+=== Hypertension (DiaBD) ===
+  XGBoost                  AUC 0.861  F1 0.471
+  Logistic Regression      AUC 0.852  F1 0.478
+  Random Forest            AUC 0.855  F1 0.476
+Saved models to C:\Projects\Intern_Project\Intern_Project\models and reports to C:\Projects\Intern_Project\Intern_Project\reports

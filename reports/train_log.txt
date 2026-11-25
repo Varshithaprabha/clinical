@@ -1,0 +1,433 @@
+
+=== pima: (778, 8), positives=272 ===
+  Logistic Regression                  CV AUC 0.844±0.039 | test AUC 0.778 F1@tuned 0.622 (2.3s)
+  Decision Tree                        CV AUC 0.777±0.036 | test AUC 0.735 F1@tuned 0.607 (2.0s)
+  Random Forest                        CV AUC 0.852±0.042 | test AUC 0.746 F1@tuned 0.579 (25.5s)
+  XGBoost                              CV AUC 0.820±0.035 | test AUC 0.730 F1@tuned 0.552 (6.5s)
+  Support Vector Machine               CV AUC 0.835±0.033 | test AUC 0.782 F1@tuned 0.642 (3.2s)
+  K-Nearest Neighbours                 CV AUC 0.832±0.036 | test AUC 0.744 F1@tuned 0.623 (2.2s)
+  Gaussian Naive Bayes                 CV AUC 0.811±0.043 | test AUC 0.760 F1@tuned 0.601 (2.0s)
+  LDA                                  CV AUC 0.845±0.039 | test AUC 0.778 F1@tuned 0.626 (2.0s)
+  Gradient Boosting                    CV AUC 0.850±0.043 | test AUC 0.742 F1@tuned 0.593 (6.4s)
+  AdaBoost                             CV AUC 0.843±0.038 | test AUC 0.742 F1@tuned 0.583 (11.2s)
+  Extra Trees                          CV AUC 0.857±0.040 | test AUC 0.777 F1@tuned 0.632 (15.5s)
+  MLP Neural Net                       CV AUC 0.774±0.056 | test AUC 0.760 F1@tuned 0.613 (3.0s)
+  HistGradientBoosting (native NaN)    CV AUC 0.826±0.036 | test AUC 0.736 F1@tuned 0.588 (6.9s)
+
+=== diabd: (5288, 12), positives=342 ===
+  Logistic Regression                  CV AUC 0.869±0.051 | test AUC 0.827 F1@tuned 0.343 (3.3s)
+  Decision Tree                        CV AUC 0.823±0.039 | test AUC 0.827 F1@tuned 0.383 (2.5s)
+  Random Forest                        CV AUC 0.882±0.043 | test AUC 0.852 F1@tuned 0.360 (44.5s)
+  XGBoost                              CV AUC 0.869±0.032 | test AUC 0.855 F1@tuned 0.452 (5.4s)
+  Support Vector Machine               CV AUC 0.858±0.062 | test AUC 0.841 F1@tuned 0.372 (36.4s)
+  K-Nearest Neighbours                 CV AUC 0.828±0.067 | test AUC 0.813 F1@tuned 0.400 (4.5s)
+  Gaussian Naive Bayes                 CV AUC 0.801±0.083 | test AUC 0.816 F1@tuned 0.122 (3.9s)
+  LDA                                  CV AUC 0.862±0.064 | test AUC 0.801 F1@tuned 0.430 (4.0s)
+  Gradient Boosting                    CV AUC 0.882±0.037 | test AUC 0.850 F1@tuned 0.444 (18.1s)
+  AdaBoost                             CV AUC 0.886±0.031 | test AUC 0.840 F1@tuned 0.390 (27.4s)
+  Extra Trees                          CV AUC 0.875±0.052 | test AUC 0.843 F1@tuned 0.364 (35.2s)
+  MLP Neural Net                       CV AUC 0.836±0.050 | test AUC 0.808 F1@tuned 0.384 (18.4s)
+  HistGradientBoosting (native NaN)    CV AUC 0.862±0.035 | test AUC 0.847 F1@tuned 0.353 (14.0s)
+
+=== general: (6066, 11), positives=614 ===
+  Logistic Regression                  CV AUC 0.888±0.014 | test AUC 0.875 F1@tuned 0.557 (19.5s)
+  Decision Tree                        CV AUC 0.849±0.020 | test AUC 0.863 F1@tuned 0.556 (18.8s)
+  Random Forest                        CV AUC 0.898±0.010 | test AUC 0.880 F1@tuned 0.543 (132.4s)
+  XGBoost                              CV AUC 0.902±0.006 | test AUC 0.864 F1@tuned 0.529 (7.2s)
+  Support Vector Machine               CV AUC 0.888±0.014 | test AUC 0.879 F1@tuned 0.523 (46.9s)
+  K-Nearest Neighbours                 CV AUC 0.869±0.020 | test AUC 0.846 F1@tuned 0.508 (19.1s)
+  Gaussian Naive Bayes                 CV AUC 0.841±0.022 | test AUC 0.858 F1@tuned 0.497 (17.8s)
+  LDA                                  CV AUC 0.885±0.013 | test AUC 0.874 F1@tuned 0.547 (18.2s)
+  Gradient Boosting                    CV AUC 0.898±0.010 | test AUC 0.882 F1@tuned 0.577 (31.2s)
+  AdaBoost                             CV AUC 0.893±0.009 | test AUC 0.885 F1@tuned 0.565 (52.1s)
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\sklearn\utils\parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+  Extra Trees                          CV AUC 0.896±0.015 | test AUC 0.877 F1@tuned 0.539 (61.0s)
+  MLP Neural Net                       CV AUC 0.890±0.012 | test AUC 0.876 F1@tuned 0.535 (52.9s)
+  HistGradientBoosting (native NaN)    CV AUC 0.891±0.008 | test AUC 0.857 F1@tuned 0.532 (19.5s)
+
+=== Robustness to missing measurements (robustness_general) ===
+  0% cells missing       Logistic=0.875  Decision=0.863  Random=0.880  XGBoost=0.864  Support=0.879
+  10% cells missing      Logistic=0.858  Decision=0.844  Random=0.880  XGBoost=0.846  Support=0.844
+  20% cells missing      Logistic=0.841  Decision=0.843  Random=0.868  XGBoost=0.830  Support=0.793
+  30% cells missing      Logistic=0.824  Decision=0.814  Random=0.846  XGBoost=0.802  Support=0.772
+  50% cells missing      Logistic=0.806  Decision=0.808  Random=0.829  XGBoost=0.778  Support=0.645
+
+=== Missing-value strategies (Pima, CV ROC-AUC) ===
+  Complete-case (drop rows) | Logistic Regression              0.846  (only 397/778 rows usable)
+  Complete-case (drop rows) | Random Forest                    0.845  (only 397/778 rows usable)
+  Median fill | Logistic Regression                            0.831  (all 778 rows)
+  Median fill | Random Forest                                  0.834  (all 778 rows)
+  KNN imputation | Logistic Regression                         0.832  (all 778 rows)
+  KNN imputation | Random Forest                               0.832  (all 778 rows)
+  MICE + missing indicators | Logistic Regression              0.826  (all 778 rows)
+  MICE + missing indicators | Random Forest                    0.834  (all 778 rows)
+  XGBoost native missing handling | XGBoost                    0.794  (all 778 rows)
+  embedding notes with BioBERT (CPU, one-off)...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\tokenizers\implementations\bert_wordpiece.py:30: DeprecationWarning: Deprecated in 0.9.0: WordPiece.__init__ will not create from files anymore, try `WordPiece.from_file` instead
+  tokenizer = Tokenizer(WordPiece(vocab, unk_token=str(unk_token)))
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 12513.18it/s]
+[1mBertModel LOAD REPORT[0m from: dmis-lab/biobert-base-cased-v1.1
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.decoder.bias               | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.decoder.weight             | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Projects\Intern_Project\Intern_Project\src\train.py", line 406, in <module>
+    main()
+    ~~~~^^
+  File "C:\Projects\Intern_Project\Intern_Project\src\train.py", line 396, in main
+    run_nlp_and_hybrid(results); checkpoint()
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Projects\Intern_Project\Intern_Project\src\train.py", line 237, in run_nlp_and_hybrid
+    E = text_models.embed(texts)
+  File "C:\Projects\Intern_Project\Intern_Project\src\text_models.py", line 35, in embed
+    enc = tok(list(texts[i:i + batch_size]), padding=True, truncation=True,
+              max_length=max_length, return_tensors="pt")
+  File "C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\transformers\tokenization_utils_base.py", line 2490, in __call__
+    encodings = self._encode_plus(
+        text=text,
+    ...<4 lines>...
+        **all_kwargs,
+    )
+  File "C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\transformers\tokenization_utils_tokenizers.py", line 907, in _encode_plus
+    self.set_truncation_and_padding(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        padding_strategy=padding_strategy,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        padding_side=padding_side,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Varshitha\AppData\Roaming\Python\Python314\site-packages\transformers\tokenization_utils_tokenizers.py", line 804, in set_truncation_and_padding
+    self._tokenizer.enable_truncation(**target)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+TypeError: BaseTokenizer.enable_truncation() got an unexpected keyword argument 'direction'

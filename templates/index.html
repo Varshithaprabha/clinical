@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinician Workspace</title>
+<style>
+  :root{
+    --teal:#173c45; --green:#1f7d63; --green-soft:#a8cfc3; --track:#ececec;
+    --ink:#161616; --muted:#5f5f5f; --faint:#8a8a8a; --line:#d9d9d9; --hair:#ececec;
+    --bg:#f3f4f4; --card:#fbfbfb;
+    --blue-bg:#dceefc; --blue:#1a7fd0; --gray-bg:#ececec;
+    --ok-bg:#d9f3e3; --ok:#14804a; --warn-bg:#fde2d6; --warn:#a8431c;
+    --amb-bg:#fdf0cf; --amb:#8a5a00; --known-bg:#e8e2fb; --known:#5b3fb5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink)}
+  .shell{max-width:980px;margin:24px auto;background:var(--card);border:1px solid #e2e2e2;border-radius:6px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  header{background:var(--teal);color:#fff;padding:16px 24px 14px;display:flex;justify-content:space-between;align-items:center}
+  header h1{margin:0;font-size:19px;font-weight:600}
+  header p{margin:4px 0 0;font-size:16px;color:#e4eef0}
+  .content{padding:14px 24px 24px}
+  .stepper{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
+  .stepper .bar{height:5px;border-radius:3px;background:var(--track)}
+  .stepper .lbl{font-size:16px;color:var(--muted);margin-top:8px}
+  .stepper .active .bar{background:var(--green)}
+  .stepper .done .bar{background:var(--green-soft)}
+  .row-title{display:flex;justify-content:space-between;align-items:center;margin:10px 0 14px}
+  .row-title h2{font-size:19px;margin:0;font-weight:600}
+  .badge{display:inline-block;font-size:14px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .b-blue{background:var(--blue-bg);color:var(--blue)} .b-gray{background:var(--gray-bg);color:#222;font-weight:500}
+  .b-ok{background:var(--ok-bg);color:var(--ok)} .b-warn{background:var(--warn-bg);color:var(--warn)}
+  .b-amb{background:var(--amb-bg);color:var(--amb)} .b-known{background:var(--known-bg);color:var(--known)}
+  .b-none{background:#eee;color:#555}
+  .sub{padding:12px 15px 6px}
+  h3{font-size:18px;font-weight:600;margin:6px 0 12px}
+  label{display:block;font-size:16px;color:#4a4a4a;font-weight:600;margin:0 0 8px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px}
+  .field{margin-bottom:10px}
+  input[type=text],input[type=number]{width:100%;height:50px;border:1px solid var(--line);border-radius:26px;padding:0 22px;font-size:18px;background:#fff;font-family:inherit;color:var(--ink);outline:none}
+  .pill-select{width:100%;height:50px;border:1px solid var(--line);border-radius:26px;padding:0 44px 0 22px;font-size:18px;font-family:inherit;color:var(--ink);outline:none;
+    -webkit-appearance:none;appearance:none;cursor:pointer;
+    background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2.2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 20px center}
+  .pill-select:invalid,.pill-select.empty{color:#9a9a9a}
+  .pill-select:focus{border-color:#9bbdb3;box-shadow:0 0 0 3px rgba(31,125,99,.12)}
+  input::placeholder,textarea::placeholder{color:#9a9a9a}
+  input:focus,textarea:focus{border-color:#9bbdb3;box-shadow:0 0 0 3px rgba(31,125,99,.12)}
+  input.invalid{border-color:#d0603a}
+  textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:8px;padding:12px 16px;font-size:18px;font-family:inherit;resize:vertical;background:#fff;outline:none}
+  textarea.tall{min-height:100px}
+  .meta{font-size:16px;color:var(--muted);margin:4px 0 14px}
+  .section{padding:14px 0;border-top:1px solid var(--hair)}
+  .section:first-of-type{border-top:none}
+  .sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .sec-head h3{margin:0}
+  .bmi-box{height:52px;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 12px;font-size:18px;background:#f8faf9}
+  .bmi-box.bmi-err{border-color:#e3a58c}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px 10px}
+  @media (max-width:700px){.grid3{grid-template-columns:1fr}}
+  .hint{font-size:16px;color:#555;line-height:1.45;margin:12px 0 2px}
+  .status-row{display:flex;justify-content:space-between;align-items:center;padding:8px 15px 0}
+  .status-row h4{margin:0;font-size:18px;font-weight:600}
+  .status-note{font-size:16px;color:var(--muted);padding:6px 15px 14px}
+  .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+  button{font-family:inherit;cursor:pointer}
+  .btn{height:46px;border-radius:24px;font-size:16px;font-weight:600}
+  .btn-light{background:#fff;border:1px solid var(--line);color:#555}
+  .btn-dark{background:#0e0e0e;color:#fff;border:1px solid #0e0e0e}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .btn-small{height:36px;border-radius:18px;font-size:14px;padding:0 16px}
+  .kv{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;color:var(--muted);padding:9px 0}
+  .kv b{color:var(--ink);font-size:17px}
+  .module{display:grid;grid-template-columns:34px 1fr auto;align-items:center;padding:9px 0}
+  .module .ic{color:#444}
+  .module .t{font-size:17px;font-weight:600}
+  .module .d{font-size:15px;color:var(--muted);margin-top:2px}
+  .module .detail{grid-column:2/4;font-size:14px;color:#444;margin-top:6px;line-height:1.5}
+  .important h4{margin:18px 0 6px;font-size:17px}
+  .important p{margin:0 0 16px;font-size:15px;color:var(--muted);line-height:1.5}
+  .acard{border:1px solid #e1e1e1;border-radius:10px;background:#fff;padding:14px 14px;margin-bottom:10px}
+  .acard h4{margin:0 0 10px;font-size:17px;font-weight:600}
+  .acard .big{font-size:26px;font-weight:700;margin:4px 0 6px}
+  .acard p{margin:8px 0 0;font-size:15px;color:#4a4a4a;line-height:1.5}
+  .small{font-size:14px;color:var(--muted)}
+  table.mt{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+  table.mt td,table.mt th{padding:6px 4px;border-bottom:1px solid #f0f0f0;text-align:left}
+  table.mt th{color:var(--muted);font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  .chip{font-size:13px;padding:3px 9px;border-radius:999px;background:#f1f3f3;border:1px solid #e3e6e6}
+  .chip.neg{background:#fafafa;color:#777;text-decoration:line-through}
+  .verify{display:grid;grid-template-columns:1fr auto;gap:6px 12px;margin-top:10px;font-size:15px;align-items:center}
+  .verify select{height:32px;border-radius:16px;border:1px solid var(--line);padding:0 10px;font-family:inherit;background:#fff}
+  .shap-row{display:grid;grid-template-columns:220px 1fr 64px;align-items:center;gap:8px;font-size:14px;margin:5px 0}
+  .shap-track{position:relative;height:12px;background:#f3f3f3;border-radius:3px}
+  .shap-track .mid{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:#bbb}
+  .shap-bar{position:absolute;top:0;height:12px;border-radius:2px}
+  .pos{background:#d1603d} .neg{background:#2a8a6e}
+  .report{white-space:pre-wrap;font-family:"Segoe UI",system-ui,sans-serif;font-size:15px;line-height:1.55;background:#fcfcfc;border:1px solid #eee;border-radius:8px;padding:14px;margin-top:10px;max-height:640px;overflow:auto}
+  .issue{font-size:14px;margin:3px 0}
+  .issue.error{color:var(--warn)} .issue.missing{color:var(--muted)}
+  .spinner{display:inline-block;width:12px;height:12px;border:2px solid #9cc;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;vertical-align:-1px;margin-right:4px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hidden{display:none}
+  .err{color:#b3261e;font-size:15px;margin-top:10px}
+  @media (max-width:700px){.grid2,.btns{grid-template-columns:1fr}.shap-row{grid-template-columns:130px 1fr 54px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div><h1>Clinician Workspace</h1><p>Patient screening and clinical entry</p></div>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="stethoscope"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
+  </header>
+
+  <div class="content">
+    <div class="stepper" id="stepper">
+      <div data-step="1"><div class="bar"></div><div class="lbl">01 · Screening</div></div>
+      <div data-step="2"><div class="bar"></div><div class="lbl">02 · AI processing</div></div>
+      <div data-step="3"><div class="bar"></div><div class="lbl">03 · Assessment</div></div>
+    </div>
+
+    <!-- ===================== STEP 1 : SCREENING ===================== -->
+    <section id="step1">
+      <div class="row-title"><h2>New Patient Screening</h2><span class="badge b-blue">Clinician</span></div>
+      <div class="sub">
+        <h3>Patient identification</h3>
+        <div class="grid2">
+          <div class="field"><label>Patient / Screening ID</label><input type="text" id="patient_id"></div>
+          <div class="field"><label>Age</label><input type="number" id="age_top" placeholder="Age in years" min="1" max="120"></div>
+        </div>
+        <div class="grid2">
+          <div class="field"><label>Patient name / identifier</label><input type="text" id="patient_name" placeholder="Enter patient name or coded identifier"></div>
+          <div class="field"><label>Sex</label>
+            <select id="sex" class="pill-select">
+              <option value="">Select sex</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other / not stated</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid2 hidden" id="preg_row">
+          <div class="field"><label>Pregnancy status</label>
+            <select id="pregnancy" class="pill-select">
+              <option value="">Select pregnancy status</option>
+              <option value="no">Not pregnant</option>
+              <option value="yes">Pregnant</option>
+              <option value="unknown">Unknown / not asked</option>
+            </select>
+          </div>
+          <div></div>
+        </div>
+        <div class="meta" id="screen_date"></div>
+      </div>
+
+      <div class="section">
+        <div class="sec-head"><h3>01. Personal history</h3><span class="badge b-gray">Original field</span></div>
+        <div class="field"><label>Complaints</label><textarea id="complaints" placeholder="Enter current complaints"></textarea></div>
+        <div class="field"><label>Existing illness – CVD / DM / HTN / CA / Thyroid and other conditions</label><textarea class="tall" id="existing_illness" placeholder="Enter personal medical history and surgery history"></textarea></div>
+      </div>
+      <div class="section">
+        <h3>02. Current medications</h3>
+        <textarea id="medications" placeholder="Enter medication names, dosage and frequency, or explicitly record NIL"></textarea>
+        <div class="field" style="margin-top:10px"><label>Known drug allergies</label>
+          <input type="text" id="allergies" placeholder="e.g. Sulfa drugs, Aspirin – or NKDA (no known drug allergies)"></div>
+      </div>
+      <div class="section">
+        <h3>03. Relevant family history</h3>
+        <textarea id="family_history" placeholder="Enter family relationship and relevant health conditions"></textarea>
+      </div>
+      <div class="section">
+        <h3>04–09. Patient measurements</h3>
+        <div class="grid2">
+          <div class="field"><label>4. Age (years)</label><input type="number" id="age" placeholder="Age" min="1" max="120"></div>
+          <div class="field"><label>5. Weight (kg)</label><input type="number" id="weight" placeholder="Weight" step="0.1"></div>
+          <div class="field"><label>6. Height (cm)</label><input type="number" id="height" placeholder="Height, e.g. 165" step="0.01"></div>
+          <div class="field"><label>7. BP (mmHg)</label><input type="text" id="bp" placeholder="e.g. 120/80"></div>
+          <div class="field"><label>8. GRBS (mg/dL)</label><input type="number" id="grbs" placeholder="GRBS"></div>
+          <div class="field"><label>9. BMI</label>
+            <div class="bmi-box" id="bmi_box" title="Calculated automatically from weight and height"><span id="bmi_val">—</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><circle cx="8.5" cy="11" r=".6"/><circle cx="12" cy="11" r=".6"/><circle cx="15.5" cy="11" r=".6"/><circle cx="8.5" cy="14.5" r=".6"/><circle cx="12" cy="14.5" r=".6"/><circle cx="15.5" cy="14.5" r=".6"/><circle cx="8.5" cy="18" r=".6"/><circle cx="12" cy="18" r=".6"/><circle cx="15.5" cy="18" r=".6"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="small" id="bmi_detail" style="margin-top:2px;min-height:18px;text-align:right"></div>
+        <div class="hint">BMI is calculated automatically when valid height and weight are entered. A manually recorded BMI, if required, should retain its source and be checked against these measurements.</div>
+        <div class="sub-head" style="margin-top:16px"><h3 style="margin-bottom:4px">Laboratory values <span class="small" style="font-weight:400">(optional – use if available)</span></h3></div>
+        <div class="grid3">
+          <div class="field"><label>Fasting glucose (mg/dL)</label><input type="number" id="fbs" placeholder="FBS / FPG"></div>
+          <div class="field"><label>HbA1c (%)</label><input type="number" id="hba1c" placeholder="e.g. 6.2" step="0.1"></div>
+          <div class="field"><label>eGFR (mL/min/1.73m²)</label><input type="number" id="egfr" placeholder="Kidney function"></div>
+        </div>
+      </div>
+      <div class="section">
+        <h3>10. Vision – Visual acuity</h3>
+        <textarea id="vision" placeholder="Right eye, left eye and observations; or not assessed"></textarea>
+      </div>
+      <div class="section">
+        <h3>11. Examination of lower limbs</h3>
+        <textarea id="lower_limbs" placeholder="Pedal edema / varicose veins and other findings; or not assessed"></textarea>
+      </div>
+      <div class="section">
+        <h3>12. Advice</h3>
+        <textarea id="advice" placeholder="Enter advice given by the clinician"></textarea>
+      </div>
+      <div class="section">
+        <h3>13. Follow-up</h3>
+        <textarea id="follow_up" placeholder="Enter follow-up instructions"></textarea>
+      </div>
+      <div class="status-row"><h4>Record status</h4><span class="badge b-gray" id="record_status">New record</span></div>
+      <div class="status-note">Partially completed records can be saved and resumed later.</div>
+      <div class="btns">
+        <button class="btn btn-light" id="save_draft">Save draft</button>
+        <button class="btn btn-dark" id="to_processing">Continue to processing &nbsp;→</button>
+      </div>
+    </section>
+
+    <!-- ===================== STEP 2 : AI PROCESSING ===================== -->
+    <section id="step2" class="hidden">
+      <div class="row-title"><h2>Clinical Data Processing</h2><span class="badge b-blue">Clinician</span></div>
+      <div class="sub">
+        <h3>Patient record received</h3>
+        <div class="kv"><span>Patient ID</span><b id="p_id">—</b></div>
+        <div class="kv"><span>Sex</span><b id="p_sex">Not recorded</b></div>
+        <div class="kv"><span>Available measurements</span><b id="p_meas">0 / 4</b></div>
+        <div class="kv"><span>BMI</span><b id="p_bmi">Unavailable</b></div>
+      </div>
+      <h3 style="margin-top:14px">Automated processing modules</h3>
+      <div id="modules"></div>
+      <div class="important">
+        <h4>Important</h4>
+        <p>Each model checks whether it has sufficient valid inputs before producing an output. Where required data are missing,
+           the assessment is withheld and the gap is reported instead of being guessed. All outputs are decision support and require clinician verification.</p>
+      </div>
+      <div id="proc_error" class="err hidden"></div>
+      <div class="btns">
+        <button class="btn btn-light" id="back_form">Back to form</button>
+        <button class="btn btn-dark" id="to_assessment" disabled>View assessment</button>
+      </div>
+    </section>
+
+    <!-- ===================== STEP 3 : ASSESSMENT ===================== -->
+    <section id="step3" class="hidden">
+      <div class="row-title"><h2>Assessment Summary</h2><span class="badge b-blue">Clinician</span></div>
+      <h3>Patient assessment</h3>
+      <div class="meta" id="assess_meta">AI-assisted decision support – findings require clinician verification.</div>
+
+      <div class="acard"><div class="small">Calculated BMI</div><div class="big" id="a_bmi">Not available</div><div class="small" id="a_bmi_sub">Based on available height and weight</div></div>
+
+      <div class="acard"><h4>Hypertension assessment</h4><span class="badge" id="a_htn_badge"></span><p id="a_htn_text"></p></div>
+
+      <div class="acard"><h4>Diabetes assessment</h4><span class="badge" id="a_dm_badge"></span><p id="a_dm_text"></p>
+        <table class="mt" id="a_dm_models"></table>
+      </div>
+
+      <div class="acard"><h4>NLP extraction review</h4><span class="badge b-blue">Clinician verification required</span>
+        <p id="a_nlp_method" class="small"></p>
+        <div id="a_nlp"></div>
+        <div class="verify" id="a_verify"></div>
+        <div style="margin-top:12px"><button class="btn btn-dark btn-small" id="reassess">Apply verification &amp; re-assess</button></div>
+      </div>
+
+      <div class="acard"><h4>Explainable AI</h4>
+        <p class="small">SHAP: how each input pushed the hybrid XGBoost diabetes score up (orange) or down (green) for this patient.</p>
+        <div id="a_shap"></div>
+        <p class="small" style="margin-top:14px">LIME: local rules that explain this prediction.</p>
+        <div id="a_lime"></div>
+      </div>
+
+      <div class="acard"><h4>Prescription</h4>
+        <span class="badge b-warn">Draft – requires clinician review and signature</span>
+        <p class="small" id="rx_src"></p>
+        <table class="mt" id="rx_table"></table>
+        <div id="rx_warn"></div>
+        <div id="rx_more"></div>
+        <div class="verify" style="grid-template-columns:auto 1fr">
+          <input type="checkbox" id="rx_ok" style="width:18px;height:18px">
+          <label for="rx_ok" style="margin:0;font-weight:500">I have reviewed this prescription and take clinical responsibility for it</label>
+        </div>
+        <div class="field" style="margin-top:10px"><input type="text" id="rx_doctor" placeholder="Prescriber name and registration number"></div>
+        <button class="btn btn-dark btn-small" id="rx_print" disabled>Approve &amp; print prescription</button>
+      </div>
+
+      <div class="acard"><h4>Clinical assessment report</h4>
+        <span class="badge b-ok" id="a_report_src"></span>
+        <div class="report" id="a_report"></div>
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <button class="btn btn-light btn-small" id="copy_report">Copy text</button>
+          <button class="btn btn-dark btn-small" id="dl_pdf">Download PDF</button>
+          <button class="btn btn-light btn-small" id="dl_report">Download .txt</button>
+          <span class="small" id="pdf_msg" style="align-self:center"></span>
+        </div>
+      </div>
+
+      <div class="btns">
+        <button class="btn btn-light" id="back_proc">Back</button>
+        <button class="btn btn-dark" id="new_patient">New patient</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const FIELDS = ["patient_id","patient_name","sex","pregnancy","allergies","fbs","hba1c","egfr","age","weight","height","bp","grbs","complaints","existing_illness",
+                "medications","family_history","vision","lower_limbs","advice","follow_up"];
+let RESULT = null;
+
+const MODULES = [
+  {key:"validation", icon:'<path d="M9 4h6v3H9z"/><rect x="5" y="5" width="14" height="16" rx="2"/><path d="m9 14 2 2 4-4"/>',
+   t:"Data validation and missing-data management", d:"Check incomplete and inconsistent fields"},
+  {key:"bmi", icon:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01"/>',
+   t:"BMI calculation and analysis", d:"Use recorded height and weight"},
+  {key:"nlp", icon:'<path d="M12 5a3 3 0 1 0-5.9.8A4 4 0 0 0 4 12a4 4 0 0 0 3 3.9V18a3 3 0 0 0 5 2.2M12 5a3 3 0 1 1 5.9.8A4 4 0 0 1 20 12a4 4 0 0 1-3 3.9V18a3 3 0 0 1-5 2.2M12 5v15"/>',
+   t:"Clinical NLP extraction", d:"Extract diseases, symptoms, medication and family history"},
+  {key:"features", icon:'<ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v14c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/>',
+   t:"Clinical feature preparation", d:"Prepare structured features for assessment"},
+  {key:"models", icon:'<path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/>',
+   t:"Diabetes and hypertension models", d:"LR, DT, RF, SVM, XGBoost, TF-IDF+SVM, BioBERT, Hybrid XGBoost"},
+  {key:"report", icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/>',
+   t:"Explainability, prescription and report", d:"SHAP, LIME, draft prescription (formulary-checked) and LLM clinician report"},
+];
+
+function today(){return new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});}
+function nextId(){const y=new Date().getFullYear();const n=(+localStorage.getItem("cw_seq")||0)+1;return `CH-${y}-${String(n).padStart(3,"0")}`;}
+function readForm(){const f={};FIELDS.forEach(k=>f[k]=$(k).value.trim());return f;}
+function writeForm(f){FIELDS.forEach(k=>{if(f[k]!==undefined)$(k).value=f[k];});$("age_top").value=$("age").value;updateBMI();syncSex();}
+function syncSex(){
+  $("sex").classList.toggle("empty",!$("sex").value);
+  $("pregnancy").classList.toggle("empty",!$("pregnancy").value);
+  const fem=$("sex").value==="female"; $("preg_row").classList.toggle("hidden",!fem);
+  if(!fem) $("pregnancy").value="";
+}
+
+function setStep(n){
+  [1,2,3].forEach(i=>$("step"+i).classList.toggle("hidden",i!==n));
+  document.querySelectorAll("#stepper > div").forEach(el=>{
+    const s=+el.dataset.step; el.className = s===n?"active":(s<n?"done":"");});
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// Height may be typed in metres (1.65) - interpreted as cm, same rule as the server.
+function heightCm(){const h=parseFloat($("height").value); if(isNaN(h)) return null; return (h>=1.0&&h<=2.5)?h*100:h;}
+function bmiInfo(){
+  const wRaw=$("weight").value.trim(), hRaw=$("height").value.trim();
+  const w=parseFloat(wRaw), h=heightCm();
+  if(!wRaw&&!hRaw) return {msg:"—"};
+  if(!wRaw) return {msg:"Enter weight to calculate"};
+  if(!hRaw) return {msg:"Enter height to calculate"};
+  if(isNaN(w)||w<25||w>250) return {err:"Check weight (25–250 kg)"};
+  if(h===null||h<120||h>220) return {err:"Check height (120–220 cm)"};
+  const b=Math.round(w/((h/100)**2)*10)/10;
+  if(b<12||b>70) return {err:"Implausible BMI – check values"};
+  const who=b<18.5?"Underweight":b<25?"Normal":b<30?"Overweight":"Obese";
+  const asian=b<18.5?"Underweight":b<23?"Normal":b<27.5?"Overweight":"Obese";
+  const tone=b<18.5?"b-amb":b<23?"b-ok":b<27.5?"b-amb":"b-warn";
+  return {bmi:b, who, asian, tone, metres:parseFloat(hRaw)<=2.5};
+}
+function computeBMI(){return bmiInfo().bmi||null;}
+function updateBMI(){
+  const i=bmiInfo(), box=$("bmi_val");
+  if(i.bmi){
+    box.innerHTML=`<b>${i.bmi.toFixed(1)}</b> kg/m² <span class="badge ${i.tone}" style="margin-left:6px">${i.who}</span>`;
+    $("bmi_detail").textContent=`WHO: ${i.who} · Asian cut-offs: ${i.asian}`+(i.metres?` · height read as ${heightCm().toFixed(0)} cm`:"");
+  } else {
+    box.innerHTML=i.err?`<span style="color:var(--warn);font-size:15px">${i.err}</span>`:`<span style="color:#9a9a9a;font-size:15px">${i.msg}</span>`;
+    $("bmi_detail").textContent="";
+  }
+  $("bmi_box").classList.toggle("bmi-err",!!i.err);
+}
+function countMeasurements(){
+  let n=0; if(+$("weight").value) n++; if(+$("height").value) n++;
+  if(/^\s*\d{2,3}\s*[\/\-]\s*\d{2,3}\s*$/.test($("bp").value)) n++; if(+$("grbs").value) n++; return n;
+}
+
+// ---------- step 1 events
+$("sex").addEventListener("change",syncSex);
+$("pregnancy").addEventListener("change",syncSex);
+$("age").addEventListener("input",()=>{$("age_top").value=$("age").value;});
+$("age_top").addEventListener("input",()=>{$("age").value=$("age_top").value;});
+["weight","height"].forEach(k=>["input","change","keyup"].forEach(ev=>$(k).addEventListener(ev,updateBMI)));
+$("bp").addEventListener("blur",()=>{const v=$("bp").value.trim();$("bp").classList.toggle("invalid",!!v&&!/^\s*\d{2,3}\s*[\/\-]\s*\d{2,3}\s*$/.test(v));});
+
+$("save_draft").onclick=()=>{
+  localStorage.setItem("cw_draft",JSON.stringify(readForm()));
+  const s=$("record_status"); s.textContent="Draft saved "+new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"}); s.className="badge b-gray";
+};
+
+$("to_processing").onclick=()=>{
+  if(!$("patient_id").value.trim()) $("patient_id").value=nextId();
+  const s=$("record_status"); s.textContent="Submitted for processing"; s.className="badge b-ok";
+  startProcessing();
+};
+
+// ---------- step 2
+function renderModules(state){
+  $("modules").innerHTML = MODULES.map(m=>{
+    const st=state[m.key]||{s:"Planned"};
+    const cls={Planned:"b-blue",Running:"b-amb",Completed:"b-ok",Warning:"b-warn",Skipped:"b-none"}[st.s]||"b-blue";
+    const label = st.s==="Running" ? '<span class="spinner"></span>Running' : st.s;
+    return `<div class="module"><svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${m.icon}</svg>
+      <div><div class="t">${m.t}</div><div class="d">${m.d}</div></div><span class="badge ${cls}">${label}</span>
+      ${st.detail?`<div class="detail">${st.detail}</div>`:""}</div>`;
+  }).join("");
+}
+
+async function startProcessing(overrides=null){
+  const form=readForm();
+  setStep(2);
+  $("p_id").textContent=form.patient_id;
+  $("p_sex").textContent={female:"Female",male:"Male",other:"Other / not stated"}[form.sex]||"Not recorded";
+$("p_meas").textContent=`${countMeasurements()} / 4`;
+  const b=computeBMI(); $("p_bmi").textContent=b?b.toFixed(1)+" kg/m²":"Unavailable";
+  $("to_assessment").disabled=true; $("proc_error").classList.add("hidden");
+  const state={}; MODULES.forEach(m=>state[m.key]={s:"Planned"}); renderModules(state);
+  let i=0; const timer=setInterval(()=>{ if(i<MODULES.length){ state[MODULES[i].key]={s:"Running"}; renderModules(state); i++; } },700);
+  try{
+    const res=await fetch("/api/assess",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({form,overrides})});
+    const data=await res.json(); clearInterval(timer);
+    if(!res.ok||data.error) throw new Error(data.error||res.statusText);
+    RESULT=data; fillModules(state,data); renderModules(state);
+    $("to_assessment").disabled=false;
+    localStorage.setItem("cw_seq", String(parseInt((form.patient_id.match(/(\d+)$/)||[0,0])[1])||0));
+    localStorage.removeItem("cw_draft");
+  }catch(e){
+    clearInterval(timer); MODULES.forEach(m=>{if(state[m.key].s!=="Completed")state[m.key]={s:"Planned"};}); renderModules(state);
+    $("proc_error").textContent="Processing failed: "+e.message; $("proc_error").classList.remove("hidden");
+  }
+}
+
+function fillModules(state,d){
+  const v=d.validation, errs=v.issues.filter(x=>x.level==="error"), miss=v.issues.filter(x=>x.level==="missing");
+  state.validation={s:errs.length?"Warning":"Completed",
+    detail: v.issues.length? v.issues.map(x=>`<div class="issue ${x.level}">• ${x.field}: ${x.message}</div>`).join("") : "All measurements present and plausible."};
+  state.bmi = d.bmi.value? {s:"Completed",detail:`BMI ${d.bmi.value} kg/m² — WHO: ${d.bmi.who}; Asian cut-offs: ${d.bmi.asian}`}
+                         : {s:"Skipped",detail:"Height and/or weight missing or implausible – BMI not calculated."};
+  const n=d.nlp; const found=(n.conditions||[]).length+(n.symptoms||[]).length+(n.medications||[]).length+(n.family_history||[]).length;
+  state.nlp={s:"Completed",detail:`${n.method}: ${found} item(s) extracted.${n.note?" "+n.note:""}`};
+  state.features={s:"Completed",detail:`Measurements: ${v.available_measurements}/4 available; missing values passed to missing-aware models (no constant filling).`};
+  state.models={s:d.diabetes.level==="insufficient"?"Warning":"Completed",detail:`Diabetes: ${d.diabetes.status}. Hypertension: ${d.hypertension.status}.`};
+  state.report={s:d.report.source.startsWith("LLM")?"Completed":"Warning",detail:`Report source: ${d.report.source}`};
+}
+
+$("back_form").onclick=()=>setStep(1);
+$("to_assessment").onclick=()=>{renderAssessment(RESULT);setStep(3);};
+
+// ---------- step 3
+const LEVEL={known:["b-known","Known condition"],high:["b-warn","High"],moderate:["b-amb","Moderate"],low:["b-ok","Low"],insufficient:["b-none","Insufficient data"]};
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const nice=s=>String(s).replace(/_/g," ");
+
+function renderAssessment(d){
+  const sx=d.validation.sex, ss=d.validation.sex_source;
+  $("assess_meta").textContent=`Sex: ${sx?sx[0].toUpperCase()+sx.slice(1):"unknown"}${ss?" (from "+ss+")":""} · AI-assisted decision support – findings require clinician verification.`;
+  $("a_bmi").textContent=d.bmi.value?`${d.bmi.value} kg/m²`:"Not available";
+  $("a_bmi_sub").textContent=d.bmi.value?`WHO: ${d.bmi.who} · Asian cut-offs: ${d.bmi.asian}`:"Based on available height and weight";
+
+  const h=d.hypertension, [hc,hl]=LEVEL[h.level];
+  $("a_htn_badge").className="badge "+hc; $("a_htn_badge").textContent=hl;
+  $("a_htn_text").innerHTML=esc(h.status)+(h.model_score!=null?`<br><span class="small">Hypertension XGBoost score ${h.model_score} (threshold ${h.threshold})${h.bp_category?" · BP category: "+esc(h.bp_category):""}</span>`:"");
+
+  const m=d.diabetes, [dc,dl]=LEVEL[m.level];
+  $("a_dm_badge").className="badge "+dc; $("a_dm_badge").textContent=dl;
+  let t=esc(m.status);
+  if(m.level!=="insufficient") t+=`<br><span class="small">Hybrid XGBoost score ${m.hybrid_score} (decision threshold ${m.hybrid_threshold}) · ${m.models_flagging} models flag elevated risk</span>`;
+  if(m.grbs_interpretation) t+=`<br><span class="small">GRBS: ${esc(m.grbs_interpretation)}</span>`;
+  if(m.criteria_met.length) t+=`<br><span class="small">Criteria: ${esc(m.criteria_met.join("; "))}</span>`;
+  $("a_dm_text").innerHTML=t;
+  const rows=Object.entries(m.structured_models).map(([k,x])=>`<tr><td>${k}</td><td>${x.probability}</td><td>${x.flag?"Elevated":"Not elevated"}</td></tr>`);
+  Object.entries(m.text_models).forEach(([k,x])=>{ if(typeof x==="number") rows.push(`<tr><td>${k} (text only)</td><td>${x}</td><td class="small">text signal</td></tr>`); });
+  rows.push(`<tr><td><b>Hybrid XGBoost (primary)</b></td><td><b>${m.hybrid_score}</b></td><td>${m.hybrid_score>=m.hybrid_threshold?"Elevated":"Not elevated"}</td></tr>`);
+  $("a_dm_models").innerHTML=`<tr><th>Model</th><th>Score</th><th>At tuned threshold</th></tr>`+rows.join("");
+
+  // NLP
+  const n=d.nlp;
+  $("a_nlp_method").textContent=`Method: ${n.method}${n.note?" — "+n.note:""}${n.clinician_verified?" · clinician-verified values applied":""}`;
+  const chips=(arr,neg)=>arr&&arr.length?`<div class="chips">${arr.map(x=>`<span class="chip${neg?" neg":""}">${esc(nice(x))}</span>`).join("")}</div>`:'<div class="small">None</div>';
+  const meds=(n.medications||[]).map(x=>`${x.text}${x.dose&&!String(x.text).includes(x.dose)?" "+x.dose:""}${x.frequency&&!String(x.text).toLowerCase().includes(String(x.frequency).toLowerCase())?" · "+x.frequency:""}${x.classes&&x.classes.length?" ("+x.classes.map(nice).join(", ")+")":""}`);
+  const fam=(n.family_history||[]).map(x=>`${x.relation}: ${nice(x.condition)}`);
+  const labs=Object.entries(n.labs||{}).map(([k,v])=>`${nice(k)}: ${v}`);
+  $("a_nlp").innerHTML=`
+    <p><b>Conditions</b>${chips(n.conditions)}${n.negated_conditions&&n.negated_conditions.length?chips(n.negated_conditions,true):""}</p>
+    <p><b>Symptoms</b>${chips(n.symptoms)}${n.negated_symptoms&&n.negated_symptoms.length?chips(n.negated_symptoms,true):""}</p>
+    <p><b>Medications</b>${chips(meds)}</p>
+    <p><b>Family history</b>${chips(fam)}${n.family_negated&&n.family_negated.length?chips(n.family_negated,true):""}</p>
+    ${labs.length?`<p><b>Lab values in text</b>${chips(labs)}</p>`:""}
+    ${n.other_findings&&n.other_findings.length?`<p><b>Other findings</b>${chips(n.other_findings)}</p>`:""}
+    <p class="small">Struck-through items were explicitly negated in the text.</p>`;
+  const F=n.features, keys=["known_diabetes","hypertensive","cardiovascular_disease","stroke","family_diabetes","family_hypertension"];
+  $("a_verify").innerHTML=`<b>Verify features used by the models</b><span></span>`+keys.map(k=>{
+    const v=F[k]; const sel=x=>(v===x||(x===null&&v==null))?"selected":"";
+    return `<span>${nice(k)}</span><select data-k="${k}"><option value="1" ${sel(1)}>Yes</option><option value="0" ${sel(0)}>No</option><option value="" ${v==null?"selected":""}>Unknown</option></select>`;}).join("");
+
+  // SHAP / LIME
+  const ex=d.explainability||{};
+  if(ex.shap){
+    const mx=Math.max(...ex.shap.map(s=>Math.abs(s.contribution)),1e-6);
+    $("a_shap").innerHTML=ex.shap.map(s=>{const w=Math.abs(s.contribution)/mx*50; const pos=s.contribution>0;
+      return `<div class="shap-row"><span>${esc(s.feature)} <span class="small">(${esc(s.value)})</span></span>
+        <div class="shap-track"><div class="mid"></div><div class="shap-bar ${pos?"pos":"neg"}" style="${pos?`left:50%`:`left:${50-w}%`};width:${w}%"></div></div>
+        <span class="small">${s.contribution>0?"+":""}${s.contribution.toFixed(3)}</span></div>`;}).join("");
+  } else $("a_shap").innerHTML=`<div class="small">${esc(ex.note||ex.shap_error||"Not available")}</div>`;
+  $("a_lime").innerHTML=ex.lime? ex.lime.map(l=>`<div class="issue">${l.weight>0?"▲":"▼"} ${esc(l.rule)} <span class="small">(${l.weight>0?"+":""}${l.weight.toFixed(3)})</span></div>`).join("")
+                               : `<div class="small">${esc(ex.note||ex.lime_error||"Not available")}</div>`;
+
+  renderRx(d.prescription);
+  $("a_report_src").textContent=d.report.source; $("a_report_src").className="badge "+(d.report.source.startsWith("LLM")?"b-ok":"b-amb");
+  $("a_report").textContent=d.report.text;
+}
+
+let RX=null;
+function renderRx(rx){
+  RX=JSON.parse(JSON.stringify(rx)); $("rx_ok").checked=false; $("rx_print").disabled=true;
+  $("rx_src").textContent="Source: "+rx.source+" · Review after: "+rx.review_after;
+  drawRx();
+  $("rx_warn").innerHTML=(rx.warnings||[]).map(w=>`<div class="issue error">⚠ ${esc(w)}</div>`).join("")+
+    (rx.removed_by_safety_check||[]).map(w=>`<div class="issue missing">✕ Removed by safety check – ${esc(w)}</div>`).join("");
+  const list=(t,a)=>a&&a.length?`<p><b>${t}</b></p><ul style="margin:4px 0 0 18px;font-size:14px">${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"";
+  $("rx_more").innerHTML=list("Advice",rx.non_drug_advice)+list("Investigations",rx.investigations)+list("Notes for prescriber",rx.notes_for_prescriber);
+}
+function drawRx(){
+  $("rx_table").innerHTML=`<tr><th>#</th><th>Medicine</th><th>Dose</th><th>Frequency</th><th>When</th><th>Duration</th><th>Status</th><th></th></tr>`+
+    (RX.items.length?RX.items.map((it,i)=>it.action==="continue"
+      ? `<tr><td>${i+1}</td><td colspan="5">${esc(it.drug)} <span class="small">– continue as before</span></td><td><span class="badge b-gray">continue</span></td><td><button class="btn-light" data-del="${i}" title="Remove">✕</button></td></tr>`
+      : `<tr><td>${i+1}</td><td><b>Tab ${esc(it.drug)}</b><div class="small">${esc(it.indication||"")}</div></td><td>${esc(it.dose)}</td>
+         <td>${esc(it.pattern)}<div class="small">${esc(it.frequency_text)}</div></td><td>${esc(it.timing||"")}</td><td>${esc(it.duration||"")}</td>
+         <td><span class="badge b-blue">new</span></td><td><button class="btn-light" data-del="${i}" title="Remove">✕</button></td></tr>`).join("")
+     : `<tr><td colspan="8" class="small">No medication prescribed at this visit.</td></tr>`);
+  document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{RX.items.splice(+b.dataset.del,1);drawRx();});
+}
+const rxGate=()=>{$("rx_print").disabled=!($("rx_ok").checked&&$("rx_doctor").value.trim());};
+$("rx_ok").onchange=rxGate; $("rx_doctor").oninput=rxGate;
+$("rx_print").onclick=()=>{
+  const f=readForm(), w=window.open("","_blank");
+  const rows=RX.items.map((it,i)=>it.action==="continue"?`<tr><td>${i+1}</td><td colspan="4">${esc(it.drug)} – continue</td></tr>`
+    :`<tr><td>${i+1}</td><td>Tab ${esc(it.drug)} ${esc(it.dose)}</td><td>${esc(it.pattern)} (${esc(it.frequency_text)})</td><td>${esc(it.timing||"")}</td><td>${esc(it.duration||"")}</td></tr>`).join("");
+  w.document.write(`<html><head><title>Prescription ${esc(f.patient_id)}</title><style>body{font-family:Segoe UI,Arial;margin:40px;color:#111}td,th{border-bottom:1px solid #ddd;padding:6px;text-align:left}table{border-collapse:collapse;width:100%}h1{font-size:44px;margin:10px 0}</style></head><body>
+    <div><b>Patient:</b> ${esc(f.patient_name||"—")} &nbsp; <b>ID:</b> ${esc(f.patient_id)} &nbsp; <b>Age:</b> ${esc(f.age||"—")} &nbsp; <b>Date:</b> ${today()}</div>
+    <h1>℞</h1><table><tr><th>#</th><th>Medicine</th><th>Frequency</th><th>When</th><th>Duration</th></tr>${rows||'<tr><td colspan=5>No medication</td></tr>'}</table>
+    ${RX.non_drug_advice&&RX.non_drug_advice.length?`<p><b>Advice:</b> ${RX.non_drug_advice.map(esc).join("; ")}</p>`:""}
+    <p><b>Investigations:</b> ${(RX.investigations||[]).map(esc).join("; ")}</p><p><b>Review after:</b> ${esc(RX.review_after)}</p>
+    <p style="margin-top:50px">Signature: ____________________<br>${esc($("rx_doctor").value)}</p></body></html>`);
+  w.document.close(); w.print();
+};
+
+$("reassess").onclick=()=>{
+  const ov={}; document.querySelectorAll("#a_verify select").forEach(s=>ov[s.dataset.k]=s.value===""?null:+s.value);
+  startProcessing(ov).then(()=>{ if(RESULT){renderAssessment(RESULT);setStep(3);} });
+};
+$("copy_report").onclick=()=>navigator.clipboard.writeText($("a_report").textContent);
+$("dl_report").onclick=()=>{
+  const blob=new Blob([`Patient ID: ${$("patient_id").value}\nScreening date: ${today()}\n\n`+$("a_report").textContent],{type:"text/plain"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=`${$("patient_id").value||"assessment"}_report.txt`; a.click();
+};
+$("dl_pdf").onclick=async()=>{
+  if(!RESULT) return;
+  const f=readForm(), btn=$("dl_pdf"), msg=$("pdf_msg");
+  btn.disabled=true; msg.textContent="Generating PDF…";
+  try{
+    const r=await fetch("/api/report.pdf",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({patient:{...f,screening_date:today()},result:RESULT,rx:RX,
+        prescriber:{name:$("rx_doctor").value.trim(),approved:$("rx_ok").checked}})});
+    if(!r.ok){const e=await r.json().catch(()=>({})); throw new Error(e.error||r.statusText);}
+    const a=document.createElement("a"); a.href=URL.createObjectURL(await r.blob());
+    a.download=`${f.patient_id||"assessment"}_report.pdf`; document.body.appendChild(a); a.click(); a.remove();
+    msg.textContent=$("rx_ok").checked&&$("rx_doctor").value.trim()?"PDF downloaded (prescription approved).":"PDF downloaded – prescription marked DRAFT until you approve it above.";
+  }catch(err){ msg.textContent="PDF failed: "+err.message; }
+  finally{ btn.disabled=false; }
+};
+$("back_proc").onclick=()=>setStep(2);
+$("new_patient").onclick=()=>{FIELDS.forEach(k=>$(k).value="");$("age_top").value="";RESULT=null;$("patient_id").value=nextId();
+  updateBMI(); syncSex(); const s=$("record_status"); s.textContent="New record"; s.className="badge b-gray"; setStep(1);};
+
+// ---------- init
+$("screen_date").textContent="Screening date: "+today();
+const draft=localStorage.getItem("cw_draft");
+if(draft){writeForm(JSON.parse(draft)); const s=$("record_status"); s.textContent="Draft restored"; s.className="badge b-gray";}
+if(!$("patient_id").value) $("patient_id").value=nextId();
+syncSex();
+setStep(1);
+</script>
+</body>
+</html>
